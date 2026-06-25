@@ -286,7 +286,7 @@ export const LaboratoryCanvas: React.FC = () => {
   const getFlaskContentsHUD = () => {
     if (flaskReagents.length === 0) {
       return (
-        <div className="text-[10px] text-slate-400 italic font-semibold">
+        <div className="text-[10px] text-gray-500 italic font-semibold">
           Flask is clean and empty.
         </div>
       );
@@ -301,64 +301,64 @@ export const LaboratoryCanvas: React.FC = () => {
     const titrationDone = buretVolume >= targetLimit;
 
     return (
-      <div className="space-y-1.5 text-[10px]">
+      <div className="space-y-1.5 text-[10px] text-black">
         {/* Base mix */}
         {hasSample && selectedSample && (
-          <div className="flex justify-between gap-2 border-b border-slate-800/40 pb-0.5">
-            <span className="text-slate-400 font-semibold">Sample:</span>
-            <span className="text-blue-300 font-bold text-right truncate max-w-[90px]" title={selectedSample.name}>
+          <div className="flex justify-between gap-2 border-b border-gray-200 pb-0.5">
+            <span className="text-gray-600 font-semibold">Sample:</span>
+            <span className="text-black font-bold text-right truncate max-w-[90px]" title={selectedSample.name}>
               100 ml {selectedSample.name.split(' ')[0]}
             </span>
           </div>
         )}
         {hasBP && (
-          <div className="flex justify-between gap-2 border-b border-slate-800/40 pb-0.5">
-            <span className="text-slate-400 font-semibold">Bleach Solution:</span>
-            <span className="text-amber-300 font-bold">20.0 ml 1%</span>
+          <div className="flex justify-between gap-2 border-b border-gray-200 pb-0.5">
+            <span className="text-gray-600 font-semibold">Bleach Solution:</span>
+            <span className="text-black font-bold">20.0 ml 1%</span>
           </div>
         )}
         {hasKI && (
-          <div className="flex justify-between gap-2 border-b border-slate-800/40 pb-0.5">
-            <span className="text-slate-400 font-semibold">Iodide Salt:</span>
-            <span className="text-sky-300 font-bold">20.0 ml 10% KI</span>
+          <div className="flex justify-between gap-2 border-b border-gray-200 pb-0.5">
+            <span className="text-gray-600 font-semibold">Iodide Salt:</span>
+            <span className="text-black font-bold">20.0 ml 10% KI</span>
           </div>
         )}
         {hasAcid && (
-          <div className="flex justify-between gap-2 border-b border-slate-800/40 pb-0.5">
-            <span className="text-slate-400 font-semibold">Acidifier:</span>
-            <span className="text-stone-300 font-bold">2.0 ml HAc</span>
+          <div className="flex justify-between gap-2 border-b border-gray-200 pb-0.5">
+            <span className="text-gray-600 font-semibold">Acidifier:</span>
+            <span className="text-black font-bold">2.0 ml HAc</span>
           </div>
         )}
         {hasStarch && (
-          <div className="flex justify-between gap-2 border-b border-slate-800/40 pb-0.5">
-            <span className="text-slate-400 font-semibold">Indicator:</span>
-            <span className="text-indigo-400 font-bold">1.0 ml Starch</span>
+          <div className="flex justify-between gap-2 border-b border-gray-200 pb-0.5">
+            <span className="text-gray-600 font-semibold">Indicator:</span>
+            <span className="text-black font-bold">1.0 ml Starch</span>
           </div>
         )}
 
         {/* Dynamic Chemical Status */}
-        <div className="pt-1 mt-1 border-t border-slate-800/60">
-          <span className="text-[9px] uppercase font-bold text-slate-500 block">Chemical State:</span>
+        <div className="pt-1 mt-1 border-t border-gray-300">
+          <span className="text-[9px] uppercase font-bold text-gray-500 block">Chemical State:</span>
           {titrationDone ? (
-            <span className="text-emerald-400 font-black flex items-center gap-1 mt-0.5">
-              ● Colorless Iodide (Endpoint)
+            <span className="text-green-700 font-black flex items-center gap-1 mt-0.5">
+              ● Colorless Endpoint
             </span>
           ) : hasKI && hasAcid ? (
             hasStarch ? (
-              <span className="text-indigo-400 font-black flex items-center gap-1 mt-0.5 animate-pulse">
+              <span className="text-indigo-900 font-black flex items-center gap-1 mt-0.5">
                 ● Starch Complex (Blue-Black)
               </span>
             ) : (
-              <span className="text-amber-500 font-black flex items-center gap-1 mt-0.5">
-                ● Liberated I₂ (Yellow-Brown)
+              <span className="text-amber-800 font-black flex items-center gap-1 mt-0.5">
+                ● Liberated Iodine
               </span>
             )
           ) : hasBP ? (
-            <span className="text-slate-350 font-bold flex items-center gap-1 mt-0.5">
-              ● Cloudy BP Solution
+            <span className="text-gray-700 font-bold flex items-center gap-1 mt-0.5">
+              ● Cloudy Solution
             </span>
           ) : (
-            <span className="text-slate-450 font-medium flex items-center gap-1 mt-0.5">
+            <span className="text-gray-500 font-medium flex items-center gap-1 mt-0.5">
               ● Ready for Reagents
             </span>
           )}
@@ -369,20 +369,20 @@ export const LaboratoryCanvas: React.FC = () => {
 
   return (
 
-    <div className="flex flex-col h-auto glass-panel border border-slate-800/80 shadow-2xl p-5 space-y-4 rounded-2xl relative overflow-hidden glass-panel-glow">
+    <div className="flex flex-col h-auto bg-gray-100 border-2 border-black p-4 space-y-4 rounded-none relative overflow-hidden text-black font-sans">
       {/* Toast Alert Notice */}
       {toastMessage && (
-        <div className="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 flex items-center gap-3 bg-rose-600 text-white py-3 px-5 rounded-xl shadow-lg border border-rose-500 animate-bounce">
+        <div className="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 flex items-center gap-3 bg-red-600 text-white py-2 px-4 rounded-none border-2 border-black shadow-md">
           <ShieldAlert size={20} />
           <span className="text-xs font-semibold">{toastMessage}</span>
         </div>
       )}
 
       {/* Header bar */}
-      <div className="flex items-center justify-between bg-slate-900/60 py-3 px-5 rounded-xl shadow-md border border-slate-800/60">
+      <div className="flex items-center justify-between bg-white py-2.5 px-4 rounded-none border-2 border-black">
         <div>
-          <h2 className="text-sm font-bold text-slate-200">Laboratory Workbench</h2>
-          <p className="text-xs text-slate-400 font-medium">Virtual Chemistry Simulator</p>
+          <h2 className="text-sm font-bold text-black uppercase">Laboratory Workbench</h2>
+          <p className="text-xs text-gray-700 font-bold">Virtual Chemistry Simulator</p>
         </div>
         <div className="flex items-center gap-2">
           {step === 1 && (
@@ -392,7 +392,7 @@ export const LaboratoryCanvas: React.FC = () => {
                 setIsFiltratePrepared(true);
                 showToast("Bleaching powder suspension filtered. 1% clear filtrate ready on shelf.");
               }}
-              className="py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold shadow-sm transition-all cursor-pointer hover:shadow-blue-500/20"
+              className="py-1.5 px-3 bg-white hover:bg-gray-200 text-black border border-black rounded-none text-xs font-bold cursor-pointer"
             >
               Filter & Prepare Filtrate
             </button>
@@ -400,10 +400,10 @@ export const LaboratoryCanvas: React.FC = () => {
           
           <button
             onClick={clearFlask}
-            className={`flex items-center gap-1 py-2 px-3 border rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+            className={`flex items-center gap-1 py-1.5 px-3 border-2 border-black rounded-none text-xs font-bold cursor-pointer ${
               showCleanFlaskGlow
-                ? 'bg-blue-600 hover:bg-blue-700 text-white border-transparent ring-4 ring-blue-500/30 animate-pulse shadow-[0_0_12px_rgba(59,130,246,0.5)]'
-                : 'border-slate-700 hover:bg-slate-800 text-slate-300'
+                ? 'bg-yellow-400 text-black'
+                : 'bg-white hover:bg-gray-250 text-black'
             }`}
             title="Reset flask reagents"
           >
@@ -414,10 +414,10 @@ export const LaboratoryCanvas: React.FC = () => {
       </div>
 
       {/* Workspace Canvas (Flask and Buret display) */}
-      <div className="flex-1 grid grid-cols-3 bg-slate-950/60 rounded-xl shadow-inner border border-slate-900/80 p-5 relative min-h-[440px] overflow-hidden">
+      <div className="flex-1 grid grid-cols-3 bg-white rounded-none border-2 border-black p-4 relative min-h-[440px] overflow-hidden">
         {/* Shelf of Reagent Bottles (Left side of workspace) */}
-        <div className="flex flex-col justify-center gap-4 wood-shelf-rack border border-stone-900 rounded-xl p-4 shadow-2xl">
-          <h4 className="text-[10px] uppercase font-bold tracking-wider text-amber-500/80 border-b border-amber-900/40 pb-1 text-center">Reagent Shelf</h4>
+        <div className="flex flex-col justify-center gap-3 bg-gray-50 border-2 border-black rounded-none p-3">
+          <h4 className="text-[10px] uppercase font-bold tracking-wider text-black border-b border-black pb-1 text-center">Reagent Shelf</h4>
           
           {/* Bleaching Powder Filtrate Bottle */}
           <button
@@ -434,27 +434,23 @@ export const LaboratoryCanvas: React.FC = () => {
                 showToast("Bleaching powder filtrate prepared. Good job.");
               }
             }}
-            className={`flex flex-col items-center p-2.5 rounded-xl border bg-slate-950/20 backdrop-blur-sm transition-all text-center group cursor-pointer bottle-premium disabled:opacity-40 disabled:cursor-not-allowed ${
+            className={`flex flex-col items-center p-2 rounded-none border border-black text-center cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
               showBPGlow
-                ? 'ring-4 ring-blue-500/80 shadow-[0_0_15px_#3b82f6] border-blue-500 scale-105 animate-pulse'
-                : isFiltratePrepared && step === 1
-                ? 'border-blue-500 shadow-sm'
-                : 'border-slate-800/50 hover:border-blue-500/30'
+                ? 'bg-yellow-200 border-2 border-black font-bold'
+                : 'bg-white hover:bg-gray-100 text-black'
             }`}
           >
             {/* BP Amber Glass Bottle Drawing */}
-            <div className="relative w-10 h-14 bg-gradient-to-b from-amber-900/40 to-amber-950/80 border border-amber-800/30 rounded-md shadow-lg flex items-center justify-center transition-all">
-              <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-6 h-2 bg-stone-700 rounded-sm border border-stone-800 shadow-sm"></div>
-              <div className="absolute -top-0.5 left-1/2 -translate-x-1/2 w-4 h-1 bg-amber-950/30 border-x border-amber-850/45"></div>
-              <div className="w-8 h-8 bg-amber-50/95 border border-amber-250 rounded-sm shadow-sm flex flex-col items-center justify-center p-0.5 select-none">
+            <div className="relative w-10 h-14 bg-amber-100 border border-black rounded-none flex items-center justify-center">
+              <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-6 h-2 bg-stone-700 border border-black rounded-none"></div>
+              <div className="w-8 h-8 bg-white border border-black rounded-none flex flex-col items-center justify-center p-0.5 select-none">
                 <span className="text-[7.5px] font-black text-amber-900 leading-none">BP</span>
                 <span className="text-[4px] font-bold text-amber-700 leading-none mt-0.5 scale-90">Bleach</span>
               </div>
-              <div className="absolute top-0.5 left-0.5 w-1 h-[90%] bg-white/10 rounded-full"></div>
             </div>
-            <span className="text-[9.5px] font-bold text-slate-300 mt-1">1% Bleaching Powder</span>
+            <span className="text-[9.5px] font-bold text-black mt-1">1% Bleaching Powder</span>
             {step === 1 && !isFiltratePrepared && (
-              <span className="text-[8.5px] text-amber-500 animate-pulse font-bold mt-0.5">Needs Filtration</span>
+              <span className="text-[8.5px] text-amber-600 font-bold mt-0.5">Needs Filtration</span>
             )}
           </button>
 
@@ -471,23 +467,21 @@ export const LaboratoryCanvas: React.FC = () => {
                 showToast("KI addition is only active during the active titration phases.");
               }
             }}
-            className={`flex flex-col items-center p-2.5 rounded-xl border bg-slate-950/20 backdrop-blur-sm transition-all text-center group cursor-pointer bottle-premium disabled:opacity-30 disabled:cursor-not-allowed ${
+            className={`flex flex-col items-center p-2 rounded-none border border-black text-center cursor-pointer disabled:opacity-35 disabled:cursor-not-allowed ${
               showKIGlow
-                ? 'ring-4 ring-blue-500/80 shadow-[0_0_15px_#3b82f6] border-blue-500 scale-105 animate-pulse'
-                : 'border-slate-800/50 hover:border-blue-500/30'
+                ? 'bg-yellow-200 border-2 border-black font-bold'
+                : 'bg-white hover:bg-gray-100 text-black'
             }`}
           >
             {/* KI Cobalt Glass Bottle Drawing */}
-            <div className="relative w-10 h-14 bg-gradient-to-b from-blue-900/40 to-blue-950/80 border border-blue-800/30 rounded-md shadow-lg flex items-center justify-center transition-all">
-              <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-6 h-2 bg-stone-700 rounded-sm border border-stone-800 shadow-sm"></div>
-              <div className="absolute -top-0.5 left-1/2 -translate-x-1/2 w-4 h-1 bg-blue-950/40 border-x border-blue-800/30"></div>
-              <div className="w-8 h-8 bg-blue-50/95 border border-blue-250 rounded-sm shadow-sm flex flex-col items-center justify-center p-0.5 select-none">
+            <div className="relative w-10 h-14 bg-blue-100 border border-black rounded-none flex items-center justify-center">
+              <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-6 h-2 bg-stone-700 border border-black rounded-none"></div>
+              <div className="w-8 h-8 bg-white border border-black rounded-none flex flex-col items-center justify-center p-0.5 select-none">
                 <span className="text-[7.5px] font-black text-blue-900 leading-none">KI</span>
                 <span className="text-[4px] font-bold text-blue-700 leading-none mt-0.5 scale-90">Iodide</span>
               </div>
-              <div className="absolute top-0.5 left-0.5 w-1 h-[90%] bg-white/10 rounded-full"></div>
             </div>
-            <span className="text-[9.5px] font-bold text-slate-300 mt-1">10% Potassium Iodide</span>
+            <span className="text-[9.5px] font-bold text-black mt-1">10% Potassium Iodide</span>
           </button>
 
           {/* Glacial Acetic Acid Bottle */}
@@ -503,23 +497,21 @@ export const LaboratoryCanvas: React.FC = () => {
                 showToast("Acid addition is only active during titration phases.");
               }
             }}
-            className={`flex flex-col items-center p-2.5 rounded-xl border bg-slate-950/20 backdrop-blur-sm transition-all text-center group cursor-pointer bottle-premium disabled:opacity-30 disabled:cursor-not-allowed ${
+            className={`flex flex-col items-center p-2 rounded-none border border-black text-center cursor-pointer disabled:opacity-35 disabled:cursor-not-allowed ${
               showAcidGlow
-                ? 'ring-4 ring-blue-500/80 shadow-[0_0_15px_#3b82f6] border-blue-500 scale-105 animate-pulse'
-                : 'border-slate-800/50 hover:border-blue-500/30'
+                ? 'bg-yellow-200 border-2 border-black font-bold'
+                : 'bg-white hover:bg-gray-100 text-black'
             }`}
           >
             {/* HAc Glass Bottle Drawing */}
-            <div className="relative w-10 h-14 bg-gradient-to-b from-slate-800/30 to-slate-900/60 border border-slate-700/30 rounded-md shadow-lg flex items-center justify-center transition-all">
-              <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-6 h-2 bg-stone-600 rounded-sm border border-stone-700 shadow-sm"></div>
-              <div className="absolute -top-0.5 left-1/2 -translate-x-1/2 w-4 h-1 bg-slate-900/30 border-x border-slate-700/30"></div>
-              <div className="w-8 h-8 bg-slate-100/95 border border-slate-200 rounded-sm shadow-sm flex flex-col items-center justify-center p-0.5 select-none">
+            <div className="relative w-10 h-14 bg-gray-200 border border-black rounded-none flex items-center justify-center">
+              <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-6 h-2 bg-stone-700 border border-black rounded-none"></div>
+              <div className="w-8 h-8 bg-white border border-black rounded-none flex flex-col items-center justify-center p-0.5 select-none">
                 <span className="text-[7.5px] font-black text-slate-800 leading-none">HAc</span>
                 <span className="text-[4px] font-bold text-slate-600 leading-none mt-0.5 scale-90">Acetic</span>
               </div>
-              <div className="absolute top-0.5 left-0.5 w-1 h-[90%] bg-white/15 rounded-full"></div>
             </div>
-            <span className="text-[9.5px] font-bold text-slate-300 mt-1">Acetic Acid</span>
+            <span className="text-[9.5px] font-bold text-black mt-1">Acetic Acid</span>
           </button>
 
           {/* Starch Indicator Bottle */}
@@ -543,23 +535,21 @@ export const LaboratoryCanvas: React.FC = () => {
                 showToast("Starch indicator is only active during active titration steps.");
               }
             }}
-            className={`flex flex-col items-center p-2.5 rounded-xl border bg-slate-950/20 backdrop-blur-sm transition-all text-center group cursor-pointer bottle-premium disabled:opacity-30 disabled:cursor-not-allowed ${
+            className={`flex flex-col items-center p-2 rounded-none border border-black text-center cursor-pointer disabled:opacity-35 disabled:cursor-not-allowed ${
               showStarchGlow
-                ? 'ring-4 ring-blue-500/80 shadow-[0_0_15px_#3b82f6] border-blue-500 scale-105 animate-pulse'
-                : 'border-slate-800/50 hover:border-blue-500/30'
+                ? 'bg-yellow-200 border-2 border-black font-bold'
+                : 'bg-white hover:bg-gray-100 text-black'
             }`}
           >
             {/* Starch Glass Bottle Drawing */}
-            <div className="relative w-10 h-14 bg-gradient-to-b from-indigo-900/30 to-purple-900/60 border border-indigo-500/20 rounded-md shadow-lg flex items-center justify-center transition-all">
-              <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-6 h-2 bg-stone-700 rounded-sm border border-stone-800 shadow-sm"></div>
-              <div className="absolute -top-0.5 left-1/2 -translate-x-1/2 w-4 h-1 bg-indigo-900/30 border-x border-indigo-500/20"></div>
-              <div className="w-8 h-8 bg-indigo-50/95 border border-indigo-200 rounded-sm shadow-sm flex flex-col items-center justify-center p-0.5 select-none">
+            <div className="relative w-10 h-14 bg-indigo-100 border border-black rounded-none flex items-center justify-center">
+              <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-6 h-2 bg-stone-700 border border-black rounded-none"></div>
+              <div className="w-8 h-8 bg-white border border-black rounded-none flex flex-col items-center justify-center p-0.5 select-none">
                 <span className="text-[7px] font-black text-indigo-900 leading-none">Starch</span>
                 <span className="text-[4px] font-bold text-indigo-700 leading-none mt-0.5 scale-90">Indicator</span>
               </div>
-              <div className="absolute top-0.5 left-0.5 w-1 h-[90%] bg-white/10 rounded-full"></div>
             </div>
-            <span className="text-[9.5px] font-bold text-slate-300 mt-1">Starch Indicator</span>
+            <span className="text-[9.5px] font-bold text-black mt-1">Starch Indicator</span>
           </button>
         </div>
 
@@ -567,21 +557,21 @@ export const LaboratoryCanvas: React.FC = () => {
         <div className="col-span-2 flex justify-center items-center relative select-none">
           
           {/* HUD overlay for Buret Contents */}
-          <div className="absolute top-[50px] left-2 bg-slate-900/90 border border-slate-800/80 p-2 rounded-xl shadow-2xl w-[120px] text-left backdrop-blur-md hover:border-blue-500/40 hover:shadow-blue-500/5 transition-all z-10">
-            <span className="text-[9px] uppercase tracking-wider font-extrabold text-blue-400 block border-b border-blue-900/30 pb-0.5 mb-1 text-center">
+          <div className="absolute top-[50px] left-2 bg-white border border-black p-2 rounded-none w-[120px] text-left z-10 text-black">
+            <span className="text-[9px] uppercase tracking-wider font-bold block border-b border-black pb-0.5 mb-1 text-center">
               Buret Contents
             </span>
-            <div className="text-[10px] text-slate-100 font-bold text-center">
+            <div className="text-[10px] font-bold text-center">
               0.1 N Na₂S₂O₃
             </div>
-            <div className="text-[8px] text-slate-400 font-semibold mt-0.5 leading-tight text-center">
+            <div className="text-[8px] text-gray-700 font-semibold mt-0.5 leading-tight text-center">
               Sodium Thiosulfate (Standard Titrant)
             </div>
           </div>
 
           {/* HUD overlay for Flask Contents */}
-          <div className="absolute bottom-[40px] right-2 bg-slate-900/90 border border-slate-800/80 p-2.5 rounded-xl shadow-2xl w-[145px] text-left backdrop-blur-md hover:border-indigo-500/40 hover:shadow-indigo-500/5 transition-all z-10">
-            <span className="text-[9px] uppercase tracking-wider font-extrabold text-indigo-400 block border-b border-indigo-900/30 pb-0.5 mb-1.5 text-center">
+          <div className="absolute bottom-[40px] right-2 bg-white border border-black p-2 rounded-none w-[145px] text-left z-10 text-black">
+            <span className="text-[9px] uppercase tracking-wider font-bold block border-b border-black pb-0.5 mb-1.5 text-center">
               Flask Contents
             </span>
             {getFlaskContentsHUD()}
@@ -992,9 +982,9 @@ export const LaboratoryCanvas: React.FC = () => {
           </svg>
 
           {/* Quick HUD Readouts overlay */}
-          <div className="absolute top-2 right-2 flex flex-col gap-1 items-end">
-            <span className="text-[10px] font-bold text-slate-400">Buret Reading</span>
-            <span className="text-xl font-mono font-bold text-blue-600 bg-blue-50 py-1 px-3 rounded-lg border border-blue-100 shadow-md">
+          <div className="absolute top-2 right-2 flex flex-col gap-1 items-end text-black bg-white/90 p-1.5 border border-black rounded-none">
+            <span className="text-[9px] font-bold uppercase">Buret Reading</span>
+            <span className="text-base font-mono font-bold">
               {buretVolume.toFixed(2)} ml
             </span>
           </div>
@@ -1003,15 +993,15 @@ export const LaboratoryCanvas: React.FC = () => {
           <div className="absolute bottom-2 left-2 flex flex-wrap gap-1 max-w-[150px]">
             {flaskReagents.map(r => {
               let label = r;
-              let color = "bg-slate-100 text-slate-700";
-              if (r === 'bleaching_powder') { label = "Bleach Filtrate"; color = "bg-amber-100 text-amber-800 border-amber-200"; }
-              if (r === 'ki') { label = "KI"; color = "bg-blue-100 text-blue-800 border-blue-200"; }
-              if (r === 'acid') { label = "Acetic Acid"; color = "bg-stone-100 text-stone-700 border-stone-200"; }
-              if (r === 'starch') { label = "Starch Complex"; color = "bg-indigo-100 text-indigo-800 border-indigo-200"; }
-              if (r === 'water_sample') { label = selectedSample?.name || "Water Sample"; color = "bg-sky-100 text-sky-800 border-sky-200"; }
-              if (r === 'diluted_water') { label = "Diluted Sample"; color = "bg-emerald-100 text-emerald-800 border-emerald-200"; }
+              let color = "bg-gray-100 text-black";
+              if (r === 'bleaching_powder') { label = "Bleach"; color = "bg-amber-100 text-black"; }
+              if (r === 'ki') { label = "KI"; color = "bg-blue-100 text-black"; }
+              if (r === 'acid') { label = "Acetic Acid"; color = "bg-stone-150 text-black"; }
+              if (r === 'starch') { label = "Starch"; color = "bg-indigo-100 text-black"; }
+              if (r === 'water_sample') { label = selectedSample?.name || "Water Sample"; color = "bg-sky-100 text-black"; }
+              if (r === 'diluted_water') { label = "Diluted"; color = "bg-emerald-100 text-black"; }
               return (
-                <span key={r} className={`text-[8px] font-semibold py-0.5 px-1.5 rounded-full border ${color}`}>
+                <span key={r} className={`text-[8px] font-bold py-0.5 px-1.5 rounded-none border border-black ${color}`}>
                   {label}
                 </span>
               );
@@ -1021,14 +1011,14 @@ export const LaboratoryCanvas: React.FC = () => {
       </div>
 
       {/* Control Deck (Bottom panel of workspace) */}
-      <div className="bg-slate-900/60 p-4 rounded-xl shadow-md border border-slate-800/60 space-y-3">
+      <div className="bg-white p-4 rounded-none border-2 border-black space-y-3 text-black">
         {/* Dynamic State controls depending on active step */}
         
         {/* Step 3: Water Sample Selection, Dilution, and Stopper timer */}
         {step === 3 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-slate-800/40 pb-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-black pb-3">
             <div className="space-y-1">
-              <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1">
+              <label className="text-[10px] font-bold uppercase tracking-wider text-black flex items-center gap-1">
                 <Beaker size={10} />
                 Select Water Source
               </label>
@@ -1040,7 +1030,7 @@ export const LaboratoryCanvas: React.FC = () => {
                   clearFlask();
                   showToast(`Selected ${waterSamples.find(s => s.id === e.target.value)?.name}. Flask cleaned.`);
                 }}
-                className="w-full text-xs font-semibold py-2 px-3 bg-slate-900 border border-slate-700 text-slate-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 cursor-pointer"
+                className="w-full text-xs font-bold py-1.5 px-2 bg-white border border-black text-black rounded-none cursor-pointer"
               >
                 {waterSamples.map(sample => (
                   <option key={sample.id} value={sample.id}>
@@ -1055,10 +1045,10 @@ export const LaboratoryCanvas: React.FC = () => {
                 <button
                   disabled={dilutionCompleted || pouringReagent !== null}
                   onClick={runDilution}
-                  className={`flex-1 py-2 px-3 text-xs font-bold rounded-lg transition-all shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${
+                  className={`flex-1 py-1.5 px-3 text-xs font-bold rounded-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border border-black ${
                     showDilutionGlow
-                      ? 'bg-emerald-600 hover:bg-emerald-700 text-white ring-4 ring-emerald-500/30 animate-pulse shadow-[0_0_12px_rgba(16,185,129,0.5)]'
-                      : 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                      ? 'bg-yellow-400 text-black'
+                      : 'bg-white hover:bg-gray-150 text-black'
                   }`}
                 >
                   {dilutionCompleted ? `Diluted 1:${selectedSample.dilutionFactor} ✓` : `Pipette & Dilute 1:${selectedSample.dilutionFactor}`}
@@ -1072,10 +1062,10 @@ export const LaboratoryCanvas: React.FC = () => {
                   (!dilutionCompleted && selectedSample && selectedSample.dilutionFactor > 1)
                 }
                 onClick={handleAddSampleBP}
-                className={`flex-1 py-2 px-3 text-xs font-bold rounded-lg transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
+                className={`flex-1 py-1.5 px-3 text-xs font-bold rounded-none border border-black cursor-pointer disabled:opacity-45 disabled:cursor-not-allowed ${
                   showPourGlow
-                    ? 'bg-blue-600 hover:bg-blue-700 text-white ring-4 ring-blue-500/30 animate-pulse shadow-[0_0_12px_rgba(59,130,246,0.5)] border-transparent'
-                    : 'border border-blue-500/50 text-blue-400 hover:bg-blue-950/30'
+                    ? 'bg-yellow-400 text-black'
+                    : 'bg-white hover:bg-gray-150 text-black'
                 }`}
               >
                 Pour Sample & Bleach
@@ -1086,13 +1076,13 @@ export const LaboratoryCanvas: React.FC = () => {
 
         {/* Stopper reaction timer for Step 3 */}
         {step === 3 && flaskReagents.includes('water_sample') && (
-          <div className="flex items-center justify-between bg-slate-900/60 p-3 rounded-lg border border-slate-800/60">
+          <div className="flex items-center justify-between bg-gray-50 p-2.5 rounded-none border border-black text-black">
             <div className="flex flex-col gap-1 text-left">
-              <span className="text-xs font-bold text-slate-200">
-                {isFlaskStoppered ? "Disinfection Process Completed" : "Sterilization (30 Mins Waiting Period)"}
+              <span className="text-xs font-bold text-black uppercase">
+                {isFlaskStoppered ? "Disinfection Process Completed" : "Sterilization (30 Mins)"}
               </span>
-              <span className="text-[10px] text-slate-400 font-semibold">
-                {isFlaskStoppered ? "✓ Residual Chlorine Safeguard Established" : "⌛ Incubating pathogen kill..."}
+              <span className="text-[10px] text-gray-700 font-semibold">
+                {isFlaskStoppered ? "✓ Safeguard Established" : "⌛ Incubating pathogen kill..."}
               </span>
             </div>
             
@@ -1100,13 +1090,13 @@ export const LaboratoryCanvas: React.FC = () => {
               <button
                 disabled={reactionTimerActive}
                 onClick={triggerReaction}
-                className={`flex items-center gap-1 py-1.5 px-3 text-white rounded-lg text-xs font-bold shadow-sm transition-all cursor-pointer disabled:opacity-50 ${
+                className={`flex items-center gap-1 py-1.5 px-3 rounded-none text-xs font-bold border border-black cursor-pointer disabled:opacity-50 ${
                   showStopperGlow
-                    ? 'bg-blue-600 hover:bg-blue-700 ring-4 ring-blue-500/30 animate-pulse shadow-[0_0_12px_rgba(59,130,246,0.5)]'
-                    : 'bg-blue-600 hover:bg-blue-700'
+                    ? 'bg-yellow-400 text-black'
+                    : 'bg-white hover:bg-gray-150 text-black'
                 }`}
               >
-                <Play size={12} fill="white" />
+                <Play size={12} fill="currentColor" />
                 {reactionTimerActive ? `Incubating (${reactionProgress}%)` : "Stopper & Wait"}
               </button>
             )}
@@ -1118,7 +1108,7 @@ export const LaboratoryCanvas: React.FC = () => {
                   setFlaskStoppered(false);
                   showToast("Stopper removed. Ready to add KI & Acid to liberate residual chlorine.");
                 }}
-                className="py-1.5 px-3 bg-stone-700 hover:bg-stone-800 text-white rounded-lg text-xs font-bold transition-all cursor-pointer"
+                className="py-1.5 px-3 bg-white hover:bg-gray-200 text-black border border-black rounded-none text-xs font-bold cursor-pointer"
               >
                 Remove Stopper
               </button>
@@ -1128,10 +1118,10 @@ export const LaboratoryCanvas: React.FC = () => {
 
         {/* Step 4: Pour Reacted Sample if flask is empty */}
         {step === 4 && !flaskReagents.includes('water_sample') && (
-          <div className="flex items-center justify-between bg-slate-900/60 p-3.5 rounded-xl border border-slate-800/60 shadow-[0_0_15px_rgba(59,130,246,0.05)] my-2">
+          <div className="flex items-center justify-between bg-gray-50 p-2.5 rounded-none border border-black my-2 text-black">
             <div className="flex flex-col gap-0.5 text-left">
-              <span className="text-xs font-bold text-slate-200">Flask is Cleaned & Empty</span>
-              <span className="text-[10px] text-slate-450 font-semibold">Pour the next aliquot of disinfected sample mixture for this trial.</span>
+              <span className="text-xs font-bold text-black uppercase">Flask is Cleaned & Empty</span>
+              <span className="text-[10px] text-gray-700 font-semibold">Pour the next aliquot of disinfected sample mixture for this trial.</span>
             </div>
             <button
               disabled={pouringReagent !== null}
@@ -1142,10 +1132,10 @@ export const LaboratoryCanvas: React.FC = () => {
                   showToast("Poured 100 ml of reacted sample mixture into the flask. Ready for reagents.");
                 });
               }}
-              className={`py-1.5 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold shadow-sm transition-all cursor-pointer border-transparent ${
+              className={`py-1.5 px-4 text-xs font-bold border border-black rounded-none cursor-pointer ${
                 showPourReactedGlow
-                  ? 'ring-4 ring-blue-500/30 animate-pulse shadow-[0_0_15px_rgba(59,130,246,0.5)]'
-                  : ''
+                  ? 'bg-yellow-400 text-black'
+                  : 'bg-white hover:bg-gray-150 text-black'
               }`}
             >
               Pour Reacted Sample
@@ -1157,45 +1147,45 @@ export const LaboratoryCanvas: React.FC = () => {
         {(step === 2 || step === 4) && (
           <div className="space-y-3">
             {/* Flow settings */}
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/60 pb-3">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-black pb-3 text-black">
+              <span className="text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
                 <Sliders size={12} />
                 Buret Flow Regulator
               </span>
               
-              <div className="flex bg-slate-950 p-1 rounded-lg gap-1 border border-slate-900">
+              <div className="flex bg-white p-1 gap-1 border border-black rounded-none">
                 <button
                   onClick={() => {
                     setIsStopcockOpen(false);
                     setFlowSpeed('off');
                     setIsStirring(false);
                   }}
-                  className={`py-1 px-3 text-xs font-bold rounded-md transition-all cursor-pointer ${
-                    flowSpeed === 'off' ? 'bg-slate-800 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/40'
+                  className={`py-1 px-3 text-xs font-bold rounded-none cursor-pointer border ${
+                    flowSpeed === 'off' ? 'bg-black text-white border-black' : 'bg-white text-black border-gray-300 hover:bg-gray-100'
                   }`}
                 >
                   Close
                 </button>
                 <button
                   onClick={() => handleToggleStopcock('drop')}
-                  className={`py-1 px-3 text-xs font-bold rounded-md transition-all cursor-pointer ${
+                  className={`py-1 px-3 text-xs font-bold rounded-none cursor-pointer border ${
                     flowSpeed === 'drop'
-                      ? 'bg-blue-600 text-white shadow-sm'
+                      ? 'bg-black text-white border-black'
                       : showTitrationGlow
-                      ? 'bg-blue-950 text-blue-300 ring-2 ring-blue-500/50 animate-pulse'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/40'
+                      ? 'bg-yellow-400 text-black border-black font-bold'
+                      : 'bg-white text-black border-gray-300 hover:bg-gray-100'
                   }`}
                 >
                   Dropwise
                 </button>
                 <button
                   onClick={() => handleToggleStopcock('continuous')}
-                  className={`py-1 px-3 text-xs font-bold rounded-md transition-all cursor-pointer ${
+                  className={`py-1 px-3 text-xs font-bold rounded-none cursor-pointer border ${
                     flowSpeed === 'continuous'
-                      ? 'bg-blue-600 text-white shadow-sm'
+                      ? 'bg-black text-white border-black'
                       : showTitrationGlow
-                      ? 'bg-blue-600 text-white ring-2 ring-blue-500/50 animate-pulse shadow-[0_0_8px_#3b82f6]'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/40'
+                      ? 'bg-yellow-400 text-black border-black font-bold'
+                      : 'bg-white text-black border-gray-300 hover:bg-gray-100'
                   }`}
                 >
                   Continuous
@@ -1208,14 +1198,14 @@ export const LaboratoryCanvas: React.FC = () => {
               <div className="flex gap-2">
                 <button
                   onClick={() => handleManualAdd(0.1)}
-                  className="flex items-center gap-1 py-1.5 px-3 border border-slate-700 hover:bg-slate-800 text-slate-300 rounded-lg text-xs font-bold transition-all cursor-pointer"
+                  className="flex items-center gap-1 py-1.5 px-3 border border-black hover:bg-gray-200 text-black rounded-none text-xs font-bold cursor-pointer"
                 >
                   <Plus size={12} />
                   0.1 ml
                 </button>
                 <button
                   onClick={() => handleManualAdd(1.0)}
-                  className="flex items-center gap-1 py-1.5 px-3 border border-slate-700 hover:bg-slate-800 text-slate-300 rounded-lg text-xs font-bold transition-all cursor-pointer"
+                  className="flex items-center gap-1 py-1.5 px-3 border border-black hover:bg-gray-200 text-black rounded-none text-xs font-bold cursor-pointer"
                 >
                   <Plus size={12} />
                   1.0 ml
@@ -1225,17 +1215,17 @@ export const LaboratoryCanvas: React.FC = () => {
               <div className="flex gap-2">
                 <button
                   onClick={refillBuret}
-                  className="py-1.5 px-3 border border-slate-700 hover:bg-slate-800 text-slate-300 rounded-lg text-xs font-bold transition-all cursor-pointer hover:bg-slate-850"
+                  className="py-1.5 px-3 border border-black hover:bg-gray-200 text-black rounded-none text-xs font-bold cursor-pointer"
                 >
                   Refill Buret
                 </button>
                 
                 <button
                   onClick={handleRecordLog}
-                  className={`py-1.5 px-4 rounded-lg text-xs font-bold transition-all cursor-pointer shadow-sm ${
+                  className={`py-1.5 px-4 text-xs font-bold border-2 border-black rounded-none cursor-pointer ${
                     showLogGlow
-                      ? 'bg-emerald-600 hover:bg-emerald-700 text-white ring-4 ring-emerald-500/30 animate-pulse shadow-[0_0_12px_rgba(16,185,129,0.5)]'
-                      : 'bg-slate-800 hover:bg-slate-900 text-white'
+                      ? 'bg-yellow-400 text-black'
+                      : 'bg-white hover:bg-gray-200 text-black'
                   }`}
                 >
                   Log Reading
@@ -1246,19 +1236,19 @@ export const LaboratoryCanvas: React.FC = () => {
         )}
 
         {/* Informative notice block */}
-        <div className="flex gap-2.5 p-3.5 bg-blue-950/20 border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.1)] rounded-xl text-[10.5px] leading-relaxed text-blue-300 font-bold transition-all">
-          <Info size={14} className="text-blue-400 shrink-0 mt-0.5" />
+        <div className="flex gap-2.5 p-3 bg-gray-50 border border-black rounded-none text-[10.5px] leading-relaxed text-black font-bold">
+          <Info size={14} className="text-black shrink-0 mt-0.5" />
           <p>
             {step === 1 && "Start by converting bleaching powder into the active sterilizing filtrate by clicking 'Filter & Prepare Filtrate'."}
             {step === 2 && (
               currentStepLogsCount > 0 && hasLogForCurrentBuretVol
-                ? `Trial ${currentStepLogsCount} logged successfully! Click the glowing 'Clean Flask' button to reset the apparatus for Trial ${currentStepLogsCount + 1}.`
+                ? `Trial ${currentStepLogsCount} logged successfully! Click the 'Clean Flask' button to reset the apparatus for Trial ${currentStepLogsCount + 1}.`
                 : `Perform Blank Titration (Trial ${currentStepLogsCount + 1}/3). Add 20 ml BP, KI, and Acid. Titrate until pale yellow, THEN add Starch and titrate to colorless.`
             )}
             {step === 3 && "Impure water requires dilution. Perform Pipette & Dilute, Pour Sample & Bleach, and click 'Stopper & Wait' for disinfection."}
             {step === 4 && (
               currentStepLogsCount > 0 && hasLogForCurrentBuretVol
-                ? `Trial ${currentStepLogsCount} logged successfully! Click the glowing 'Clean Flask' button to reset the apparatus for Trial ${currentStepLogsCount + 1}.`
+                ? `Trial ${currentStepLogsCount} logged successfully! Click the 'Clean Flask' button to reset the apparatus for Trial ${currentStepLogsCount + 1}.`
                 : `Perform Sample Titration (Trial ${currentStepLogsCount + 1}/3). Add KI and Acid. Titrate until pale yellow, THEN add Starch and titrate to colorless.`
             )}
             {step === 5 && "Titration is finished. Move to the next page and calculate the dosage per Liter."}

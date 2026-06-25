@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useLabState } from '../context/LabStateContext';
-import { BookOpen, ClipboardList, CheckCircle, ArrowRight, Activity } from 'lucide-react';
 
 export const DidacticPanel: React.FC = () => {
   const { step, setStep, selectedSampleId, waterSamples, logs, isFlaskStoppered, reactionTimerActive, isFiltratePrepared } = useLabState();
@@ -8,13 +7,8 @@ export const DidacticPanel: React.FC = () => {
 
   const selectedSample = waterSamples.find(s => s.id === selectedSampleId);
 
-  const isNextReady =
-    (step === 1 && isFiltratePrepared) ||
-    (step === 2 && logs.filter(l => l.sampleName === 'Blank Standardization').length >= 3) ||
-    (step === 3 && isFlaskStoppered && !reactionTimerActive) ||
-    (step === 4 && logs.filter(l => l.sampleName === selectedSample?.name).length >= 3);
 
-  // Define steps for the procedure tab
+
   const stepsList = [
     {
       id: 1,
@@ -44,180 +38,119 @@ export const DidacticPanel: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col h-auto glass-panel border border-slate-800/80 shadow-2xl rounded-2xl">
+    <div className="flex flex-col border border-black bg-white font-sans text-black rounded-none">
+      
       {/* Sidebar Header Tabs */}
-      <div className="flex border-b border-slate-800 bg-slate-900/60 p-2 gap-2">
+      <div className="flex border-b border-black bg-gray-100 p-1 gap-1">
         <button
           onClick={() => setActiveTab('procedure')}
-          className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 text-sm font-semibold rounded-lg transition-all cursor-pointer ${
-            activeTab === 'procedure'
-              ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-[0_0_12px_rgba(37,99,235,0.3)]'
-              : 'text-slate-400 hover:bg-slate-800/60'
+          className={`flex-1 py-1.5 px-2 text-xs font-bold border border-black cursor-pointer ${
+            activeTab === 'procedure' ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-250'
           }`}
         >
-          <ClipboardList size={16} />
           Procedure
         </button>
         <button
           onClick={() => setActiveTab('theory')}
-          className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 text-sm font-semibold rounded-lg transition-all cursor-pointer ${
-            activeTab === 'theory'
-              ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-[0_0_12px_rgba(37,99,235,0.3)]'
-              : 'text-slate-400 hover:bg-slate-800/60'
+          className={`flex-1 py-1.5 px-2 text-xs font-bold border border-black cursor-pointer ${
+            activeTab === 'theory' ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-250'
           }`}
         >
-          <BookOpen size={16} />
           Theory
         </button>
       </div>
 
-      {/* Panel Content Scrollable */}
-      <div className="p-5 space-y-6">
+      {/* Main Content Area */}
+      <div className="p-4 space-y-4 text-xs">
         {activeTab === 'theory' ? (
-          <div className="space-y-5 text-sm leading-relaxed text-slate-300">
+          <div className="space-y-4 text-xs leading-relaxed">
             <div>
-              <h3 className="text-lg font-bold text-slate-100 flex items-center gap-2 border-b border-slate-800/80 pb-2">
-                <Activity size={18} className="text-blue-400" />
-                Water Disinfection History
-              </h3>
-              <p className="mt-2 text-slate-300 font-medium">
-                In 1854, during London's Broad Street cholera epidemic, <strong>Dr. John Snow</strong> traced the outbreak's source to a contaminated sewage-polluted water pump. By applying chlorine (a powerful oxidizer) to neutralize water pathogens, Snow established water disinfection as the cornerstone of global public health infrastructure, saving millions of lives.
+              <h4 className="font-bold border-b border-black pb-0.5 mb-1 uppercase text-[11px]">Aim</h4>
+              <p className="text-[11px]">
+                To estimate the quantity of bleaching powder required for sterilization of different samples of water.
               </p>
             </div>
 
             <div>
-              <h3 className="text-base font-bold text-slate-100 border-b border-slate-800/80 pb-1 mt-4">
-                Chemical Composition & Dissociation
-              </h3>
-              <p className="mt-2 text-slate-300 font-medium">
-                Commercial bleaching powder is primarily <strong>Calcium Hypochlorite</strong>, represented chemically as:
+              <h4 className="font-bold border-b border-black pb-0.5 mb-1 uppercase text-[11px]">Theoretical Chemistry</h4>
+              <p className="text-[11px] mb-2">
+                Bleaching powder is Ca(OCl)2. Under atmospheric conditions, it releases chlorine gas which sterilizes water:
               </p>
-              <div className="my-3 p-3 bg-slate-900/60 border border-slate-800/80 rounded-lg text-center font-mono text-blue-300 text-xs shadow-inner">
-                CaOCl<sub>2</sub> + H<sub>2</sub>O &rarr; Ca(OH)<sub>2</sub> + Cl<sub>2</sub>
+              <div className="my-2 p-2 bg-gray-50 border border-black text-center font-mono text-[10px]">
+                CaOCl2 + H2O &rarr; Ca(OH)2 + Cl2
               </div>
-              <p className="text-slate-300 font-medium">
-                When dissolved in water, it undergoes hydrolysis to release free chlorine gas. This active chlorine is the primary biocide that disrupts the biological membranes of bacteria. Due to atmospheric humidity and heat, commercial bleaching powder degrades, yielding only <strong>30-36% available chlorine</strong>.
+              <p className="text-[11px] mb-2">
+                Available chlorine is estimated using iodometric titration. Acidified bleaching powder oxidizes iodide to iodine:
               </p>
-            </div>
-
-            <div>
-              <h3 className="text-base font-bold text-slate-100 border-b border-slate-800/80 pb-1 mt-4">
-                Iodometric Redox Stoichiometry
-              </h3>
-              <p className="mt-2 text-slate-300 font-medium">
-                We estimate available chlorine using a two-step iodometric redox process. First, standard bleaching powder solution is acidified with acetic acid in the presence of excess Potassium Iodide (KI). The chlorine oxidizes iodide to molecular iodine:
-              </p>
-              <div className="my-3 p-3 bg-slate-900/60 border border-slate-800/80 rounded-lg text-center font-mono text-blue-300 text-xs shadow-inner">
-                Cl<sub>2</sub> + 2KI &rarr; 2KCl + I<sub>2</sub>
+              <div className="my-2 p-2 bg-gray-50 border border-black text-center font-mono text-[10px]">
+                Cl2 + 2KI &rarr; 2KCl + I2
               </div>
-              <p className="text-slate-300 font-medium">
-                The liberated iodine (which tints the liquid brown) is then titrated against standard Sodium Thiosulfate (Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub>) titrant:
+              <p className="text-[11px]">
+                The iodine is titrated against standard sodium thiosulfate using starch indicator:
               </p>
-              <div className="my-3 p-3 bg-slate-900/60 border border-slate-800/80 rounded-lg text-center font-mono text-blue-300 text-xs shadow-inner">
-                I<sub>2</sub> + 2Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub> &rarr; Na<sub>2</sub>S<sub>4</sub>O<sub>6</sub> + 2NaI
+              <div className="my-2 p-2 bg-gray-50 border border-black text-center font-mono text-[10px]">
+                I2 + 2Na2S2O3 &rarr; Na2S4O6 + 2NaI
               </div>
-              <p className="text-slate-300 font-medium">
-                A starch indicator is added near the endpoint, forming a deep blue-black coordination complex with the iodine. Once all molecular iodine is reduced back to colorless iodide ions, the solution turns instantly transparent.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-base font-bold text-slate-100 border-b border-slate-800/80 pb-1 mt-4">
-                Disinfection Demand
-              </h3>
-              <p className="mt-2 text-slate-300 font-medium">
-                When bleaching powder is added to environmental water, impurities (algae, bacteria, metal ions) consume chlorine. The amount of chlorine consumed is the <strong>chlorine demand</strong>. The remaining chlorine is called <strong>residual chlorine</strong>. Determining the exact dosage required to satisfy the demand is crucial to guarantee pathogen destruction without leaving excess toxic chlorine in the drinking water supply.
-              </p>
             </div>
           </div>
         ) : (
-          <div className="space-y-4">
-            <h3 className="text-base font-bold text-slate-200 flex items-center gap-2 border-b border-slate-800/80 pb-2">
-              <ClipboardList size={18} className="text-blue-400" />
-              Experiment Steps
-            </h3>
-            
-            <div className="space-y-4">
+          <div className="space-y-3">
+            <div className="flex justify-between items-center border-b border-black pb-1.5">
+              <span className="font-bold uppercase text-[10px] text-gray-700">Step {step} of 5</span>
+              <span className="font-bold text-[10px] uppercase bg-black text-white px-2 py-0.5">
+                {step <= 2 ? "Standardization" : selectedSample?.name || "Sample"}
+              </span>
+            </div>
+
+            <div className="space-y-3">
               {stepsList.map((s) => {
                 const isActive = step === s.id;
                 const isCompleted = step > s.id;
-                
+
                 return (
                   <div
                     key={s.id}
-                    className={`p-4 rounded-xl transition-all border ${
+                    className={`p-3 border ${
                       isActive
-                        ? 'border-blue-500/40 border-l-4 border-l-blue-500 bg-blue-950/20 shadow-[0_0_15px_rgba(59,130,246,0.08)]'
+                        ? 'border-2 border-black bg-yellow-50'
                         : isCompleted
-                        ? 'border-emerald-500/20 border-l-4 border-l-emerald-500 bg-emerald-950/10'
-                        : 'border-slate-800/60 bg-slate-900/20 opacity-40'
+                        ? 'border-black bg-gray-150 opacity-70'
+                        : 'border-gray-300 opacity-40'
                     }`}
                   >
-                    <div className="flex items-start gap-3">
-                      <div className="mt-0.5">
-                        {isCompleted ? (
-                          <CheckCircle size={20} className="text-emerald-400 fill-emerald-950/30" />
-                        ) : (
-                          <div
-                            className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                              isActive
-                                ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.4)]'
-                                : 'bg-slate-800 text-slate-400 border border-slate-700'
-                            }`}
-                          >
-                            {s.id}
-                          </div>
-                        )}
-                      </div>
-                      
-                      <div className="space-y-1">
-                        <h4
-                          className={`font-bold text-sm transition-colors ${
-                            isActive
-                              ? 'text-blue-300'
-                              : isCompleted
-                              ? 'text-emerald-400'
-                              : 'text-slate-400'
-                          }`}
-                        >
-                          {s.title}
-                        </h4>
-                        <p className="text-xs text-slate-400 leading-relaxed font-medium">
-                          {s.description}
-                        </p>
-                      </div>
+                    <div className="space-y-1">
+                      <h4 className="font-bold text-xs uppercase text-black">
+                        {s.id}. {s.title}
+                      </h4>
+                      <p className="text-[11px] text-gray-800 leading-normal">
+                        {s.description}
+                      </p>
                     </div>
 
-                    {/* Step specific alerts and helpful reminders */}
+                    {/* Step warnings/tips */}
                     {isActive && s.id === 1 && (
-                      <div className="mt-3 p-2.5 bg-blue-950/30 border border-blue-900/60 rounded-lg text-xs text-blue-300 font-medium">
-                        <strong>Action Needed:</strong> Click on the filter button in the center panel to filter the 1% bleaching powder suspension.
+                      <div className="mt-2 p-2 bg-white border border-dashed border-black text-[10px] font-bold text-blue-700">
+                        * Action: Click "Filter Suspension" in the visual panel to get the clear filtrate.
                       </div>
                     )}
                     {isActive && s.id === 2 && (
-                      <div className="mt-3 p-2.5 bg-blue-950/30 border border-blue-900/60 rounded-lg text-xs text-blue-300 font-medium">
-                        <strong>Action Needed:</strong> Pour 20 ml of Bleaching Powder filtrate, add KI, Acetic Acid, and Starch. Titrate to colorless, then click <strong>'Log Reading'</strong> in the control deck to record V1 and proceed.
+                      <div className="mt-2 p-2 bg-white border border-dashed border-black text-[10px] font-bold text-blue-700">
+                        * Action: Pour solution, add KI, Acetic Acid, and Starch. Titrate and click "Log Reading".
                       </div>
                     )}
                     {isActive && s.id === 3 && (
-                      <div className="mt-3 p-2.5 bg-blue-950/30 border border-blue-900/60 rounded-lg text-xs text-blue-300 space-y-1 font-medium">
-                        <div><strong>Selected sample:</strong> <span className="text-white font-bold">{selectedSample?.name}</span></div>
-                        <div className="text-[11px]"><strong>Impurity Profile:</strong> <span className="text-slate-300">{selectedSample?.impurityProfile}</span></div>
-                        {selectedSample && selectedSample.dilutionFactor > 1 && (
-                          <p className="text-amber-300 font-bold mt-1 bg-amber-950/20 border border-amber-900/50 p-1.5 rounded">
-                            ⚠️ This sample is highly impure. You must dilution-pipette it first (DF = {selectedSample.dilutionFactor}) before sterilization.
-                          </p>
-                        )}
+                      <div className="mt-2 p-2 bg-white border border-dashed border-black text-[10px] font-bold text-blue-700">
+                        * Action: Select sample. Dilute if DF &gt; 1, then click "Add 20ml Bleach" and start the 30-min reaction.
                       </div>
                     )}
                     {isActive && s.id === 4 && (
-                      <div className="mt-3 p-2.5 bg-blue-950/30 border border-blue-900/60 rounded-lg text-xs text-blue-300 font-medium">
-                        <strong>Action Needed:</strong> Add KI, Acetic Acid, and Starch. Titrate the residual chlorine to colorless, then click <strong>'Log Reading'</strong> in the control deck to record V2 and proceed.
+                      <div className="mt-2 p-2 bg-white border border-dashed border-black text-[10px] font-bold text-blue-700">
+                        * Action: Add KI, Acetic Acid, and Starch. Titrate and click "Log Reading".
                       </div>
                     )}
                     {isActive && s.id === 5 && (
-                      <div className="mt-3 p-2.5 bg-blue-950/30 border border-blue-900/60 rounded-lg text-xs text-blue-300 font-medium">
-                        <strong>Action Needed:</strong> Enter your observations and calculate the required dosage in the dashboard on the right.
+                      <div className="mt-2 p-2 bg-white border border-dashed border-black text-[10px] font-bold text-blue-700">
+                        * Action: Enter calculations in the right panel and verify.
                       </div>
                     )}
                   </div>
@@ -228,28 +161,31 @@ export const DidacticPanel: React.FC = () => {
         )}
       </div>
 
-        {/* Sticky Next Stage Action Footer */}
-        {activeTab === 'procedure' && step < 5 && (
-          <div className="p-4 bg-slate-900/60 border-t border-slate-800/80 mt-auto">
-            <button
-              disabled={
-                (step === 1 && !isFiltratePrepared) ||
-                (step === 2 && logs.filter(l => l.sampleName === 'Blank Standardization').length < 3) ||
-                (step === 3 && (!isFlaskStoppered || reactionTimerActive)) ||
-                (step === 4 && logs.filter(l => l.sampleName === selectedSample?.name).length < 3)
-              }
-              onClick={() => setStep(step + 1)}
-              className={`w-full flex items-center justify-center gap-2 py-2.5 px-4 font-bold rounded-xl text-xs transition-all shadow-sm cursor-pointer ${
-                isNextReady
-                  ? 'bg-emerald-600 hover:bg-emerald-700 text-white ring-4 ring-emerald-500/30 animate-pulse shadow-[0_0_15px_rgba(16,185,129,0.4)]'
-                  : 'bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-40 disabled:cursor-not-allowed'
-              }`}
-            >
-              Next Stage
-              <ArrowRight size={14} />
-            </button>
-          </div>
-        )}
-      </div>
+      {/* Sticky Next Stage Footer */}
+      {activeTab === 'procedure' && step < 5 && (
+        <div className="border-t border-black bg-gray-150 p-3 flex items-center justify-between">
+          <button
+            disabled={step === 1}
+            onClick={() => setStep(step - 1)}
+            className="py-1 px-3 border border-black font-bold text-xs bg-white text-black hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+          >
+            Previous
+          </button>
+
+          <button
+            disabled={
+              (step === 1 && !isFiltratePrepared) ||
+              (step === 2 && logs.filter(l => l.sampleName === 'Blank Standardization').length < 3) ||
+              (step === 3 && (!isFlaskStoppered || reactionTimerActive)) ||
+              (step === 4 && logs.filter(l => l.sampleName === selectedSample?.name).length < 3)
+            }
+            onClick={() => setStep(step + 1)}
+            className="py-1 px-3 border border-black font-bold text-xs bg-blue-600 text-white hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-600 disabled:cursor-not-allowed cursor-pointer"
+          >
+            Next Stage
+          </button>
+        </div>
+      )}
+    </div>
   );
 };
