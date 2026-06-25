@@ -416,9 +416,9 @@ export const AnalyticalDashboard: React.FC = () => {
               <body>
                 <div class="page">
                    <!-- Header -->
-                   <div class="header">
-                     <img src="/logo.png" alt="Margdarshak Logo" style="height: 45px; width: auto; display: block; object-fit: contain;" />
-                     <div class="divider"></div>
+                    <div class="header">
+                      <img src="${window.location.origin}/logo.png" alt="Margdarshak Logo" style="height: 45px; width: auto; display: block; object-fit: contain; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden;" />
+                      <div class="divider"></div>
                      <div class="header-text">
                        <h1>OBSERVATION RECORD</h1>
                        <h2>Estimation of Bleaching Powder for Water Disinfection</h2>
